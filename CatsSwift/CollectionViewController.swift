@@ -11,15 +11,15 @@ import UIKit
 
 
 class CollectionViewController: UICollectionViewController {
-    var photoArray:[UIImage] = [UIImage]()
+    
     let lolApiKey:String = "RGAPI-fdf678aa-1e3d-4999-8e9f-10d2194fd00c"
     let lolChampionsUrlstring = "http://ddragon.leagueoflegends.com/cdn/6.24.1/data/en_US/champion.json"
+    let lolSquareImageUrl = "http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/"
     var championsArray:[Champion] = [Champion]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        photoArray.append(#imageLiteral(resourceName: "IMG_0078"))
-        self.championsUrlRequestAndSession(lolChampionsUrlString: lolChampionsUrlstring)
+        self.urlRequestAndSessionForGettingNameAndImage(lolChampionsUrlString: lolChampionsUrlstring)
     }
         
     override func didReceiveMemoryWarning() {
@@ -27,20 +27,9 @@ class CollectionViewController: UICollectionViewController {
         
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
-
     // MARK: UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
@@ -54,12 +43,14 @@ class CollectionViewController: UICollectionViewController {
         let cell:PhotoCell = collectionView.dequeueReusableCell(withReuseIdentifier:
             "Cell", for: indexPath) as! PhotoCell
     
-        cell.titleLabel.text = championsArray[indexPath.row].name
-    
+        let champion:Champion = championsArray[indexPath.row]
+        cell.imageView.image = self.imageDataFromChampion(champion: champion)
+        cell.titleLabel.text = champion.name
+        
         return cell
     }
     
-    func championsUrlRequestAndSession(lolChampionsUrlString:String) {
+    func urlRequestAndSessionForGettingNameAndImage(lolChampionsUrlString:String) {
         guard let url = URL.init(string: lolChampionsUrlString) else { return }
         URLSession.shared.dataTask(with: url) { (data, reponse, error) in
             if error != nil {
@@ -75,53 +66,16 @@ class CollectionViewController: UICollectionViewController {
                 
                 for (key,value) in champsInData {
                     let championDetail = champsInData[key] as! [String:Any]
-                    print(championDetail["name"]!)
+//                    print(championDetail["name"]!)
                     let champion:Champion = Champion()
                     champion.name = championDetail["name"] as! String
                     let imageDetail = championDetail["image"] as! [String:Any]
                     champion.image = imageDetail["full"] as! String
-                    print(champion.image)
-                    print(champion.name)
+//                    print(champion.image)
+//                    print(champion.name)
                     self.championsArray.append(champion)
+                    self.championsArray.sort(by: {$0.name < $1.name})
                 }
-
-                
-                
-                
-//                for (key,value) in champs {
-//                    print("champs have \(key)")
-//                    let champsDetail = champs[key] as! [String:Any]
-//                    for (key,value) in champsDetail {
-//                        print("champsDetail have \(key)")
-//                        let champion:Champion = Champion();
-//                        champion.name = champsDetail["name"] as! String
-//                        let champsImage = champsDetail["image"] as! [String:Any]
-//                        for (key,value) in champsImage {
-//                            print(key)
-//                            champion.image = champsImage["full"] as! String
-//                            self.championsArray.append(champion)
-//                        }
-//                    }
-//
-//                }
-                
-//                for (key,value) in champs {
-//                    print("champs have \(key)")
-//                    let champsDetail = champs[key] as! [String:Any]
-//                    for (key,value) in champsDetail {
-//                        print("champsDetail have \(key)")
-//
-//                        let champsImage = champsDetail["image"] as! [String:Any]
-//                        for (key,value) in champsImage {
-//                            print(key)
-//                            let champion:Champion = Champion();
-//                            champion.name = champsDetail["name"] as! String
-//                            champion.image = champsImage["full"] as! String
-//                            self.championsArray.append(champion)
-//                        }
-//                    }
-//
-//                }
                 
             } catch let jsonError {
                     print(jsonError)
@@ -131,6 +85,17 @@ class CollectionViewController: UICollectionViewController {
                 self.collectionView?.reloadData()
             }
         }.resume()
+    }
+    
+    func imageDataFromChampion(champion:Champion) -> UIImage {
+        let url:URL = URL.init(string: String.init(format: "\(lolSquareImageUrl)%@", champion.image))!
+        var data:Data = Data()
+        do {
+             data = try Data.init(contentsOf: url)
+        } catch let dataError{
+            print(dataError)
+        }
+        return UIImage.init(data: data)!
     }
 
 }
