@@ -14,6 +14,8 @@
 		4D5739911FB6DD8D0076ED88 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5739901FB6DD8D0076ED88 /* CollectionViewController.swift */; };
 		4D5739931FB6E0BF0076ED88 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5739921FB6E0BF0076ED88 /* PhotoCell.swift */; };
 		4D5739951FBA62ED0076ED88 /* Champion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5739941FBA62ED0076ED88 /* Champion.swift */; };
+		4DF840551FC6D72700BA2867 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF840541FC6D72700BA2867 /* ViewController.swift */; };
+		4DF840591FC6EDDE00BA2867 /* ChampDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF840581FC6EDDE00BA2867 /* ChampDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		4D5739901FB6DD8D0076ED88 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		4D5739921FB6E0BF0076ED88 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		4D5739941FBA62ED0076ED88 /* Champion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Champion.swift; sourceTree = "<group>"; };
+		4DF840541FC6D72700BA2867 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		4DF840581FC6EDDE00BA2867 /* ChampDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChampDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,8 +64,10 @@
 			children = (
 				4D57397E1FB6DB2B0076ED88 /* AppDelegate.swift */,
 				4D5739901FB6DD8D0076ED88 /* CollectionViewController.swift */,
+				4DF840581FC6EDDE00BA2867 /* ChampDelegate.swift */,
 				4D5739941FBA62ED0076ED88 /* Champion.swift */,
 				4D5739821FB6DB2B0076ED88 /* Main.storyboard */,
+				4DF840541FC6D72700BA2867 /* ViewController.swift */,
 				4D5739921FB6E0BF0076ED88 /* PhotoCell.swift */,
 				4D5739851FB6DB2B0076ED88 /* Assets.xcassets */,
 				4D5739871FB6DB2B0076ED88 /* LaunchScreen.storyboard */,
@@ -142,7 +148,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4DF840551FC6D72700BA2867 /* ViewController.swift in Sources */,
 				4D5739951FBA62ED0076ED88 /* Champion.swift in Sources */,
+				4DF840591FC6EDDE00BA2867 /* ChampDelegate.swift in Sources */,
 				4D5739911FB6DD8D0076ED88 /* CollectionViewController.swift in Sources */,
 				4D5739931FB6E0BF0076ED88 /* PhotoCell.swift in Sources */,
 				4D57397F1FB6DB2B0076ED88 /* AppDelegate.swift in Sources */,
