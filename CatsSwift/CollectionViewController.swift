@@ -63,6 +63,8 @@ class CollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 //        delegate?.passChamion(champion: championsArray[indexPath.row])
+        let photoCell:PhotoCell = collectionView.cellForItem(at: indexPath) as! PhotoCell
+        photoCell.vibration()
         sendingChamp = championsArray[indexPath.row]
         performSegue(withIdentifier: "detail", sender: self)
     }
