@@ -22,6 +22,7 @@ class ViewController: UIViewController, ChampDelegate {
         self.defenseLabel.text = String.init(format: "%i / 10", passedChamp.defense!)
         self.magicLabel.text = String.init(format: "%i / 10", passedChamp.magic!)
         self.difficultyLabel.text = String.init(format: "%i / 10", passedChamp.difficulty!)
+        self.title = passedChamp.name
         
     }
 
